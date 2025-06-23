@@ -40,16 +40,17 @@ async function fetchPlanet(id) {
 
 async function fetchCharacter(planet) {
   const url = `${baseUrl}/planets/${planet?.id}/characters`;
-  const character = await fetch(url)
+  const characters = await fetch(url)
     .then(res => res.json())
-    console.log(character)
-  return character;
+    console.log(characters)
+  return characters;
 }
 
 async function fetchFilms(planet) {
   const url = `${baseUrl}/planets/${planet?.id}/films`;
   const films = await fetch(url)
     .then(res => res.json())
+    console.log(films)
   return films;
 }
 
@@ -61,6 +62,6 @@ const renderPlanet = planet => {
   diameterSpan.textContent = planet?.diameter;
   const filmsLis = planet?.films?.map(film => `<li><a href="/film.html?id=${film.id}">${film.title}</li>`)
   filmsUl.innerHTML = filmsLis.join("");
-  const charactersLis = planet?.chracters?.map(character => `<li><a href="/character.html?id=${character.id}">${character.name}</li>`)
+  const charactersLis = planet?.character?.map(character => `<li><a href="/character.html?id=${character.id}">${character.name}</li>`)
   charactersUl.innerHTML = charactersLis.join("");
 }
