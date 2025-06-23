@@ -13,11 +13,12 @@ addEventListener('DOMContentLoaded', () => {
   producerSpan = document.querySelector('span#producer');
   release_dateSpan = document.querySelector('span#release_date')
   charactersUl = document.querySelector('#characters>ul');
-  planetsUl = document.querySelector('#films>ul');
+  planetsUl = document.querySelector('#planets>ul');
   const sp = new URLSearchParams(window.location.search)
   const id = sp.get('id')
   getFilm(id)
   getFilmCharacters(id)
+  getFilmPlanets(id)
 });
 
 
@@ -79,3 +80,29 @@ const renderFilmCharacters = filmCharacters => {
 }
 
 // FILM PLANETS
+
+async function getFilmPlanets(id) {
+    let planets;
+    try {
+        planets = await fetchFilmPlanets(id)
+        console.log(planets);
+    }
+    catch (ex) {
+        console.error(`Error reading film ${id} planets data.`, ex.message);
+    }
+    renderFilmPlanets(planets);
+  
+}
+
+async function fetchFilmPlanets(id) {
+    let filmPlanetsUrl = `${baseUrl}/films/${id}/planets`;
+    return await fetch(filmPlanetsUrl)
+      .then(res => res.json())
+}
+
+const renderFilmPlanets = filmPlanets => {
+    const filmPlanetsLis = filmPlanets.map(planet =>
+        `<li><a href="/planet.html?id=${planet.id}">${planet.name}</a></li>`
+    )
+    planetsUl.innerHTML = filmPlanetsLis.join("");
+}
