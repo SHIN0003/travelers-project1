@@ -23,6 +23,21 @@ addEventListener('DOMContentLoaded', () => {
   getFilmPlanets(id)
 });
 
+function storeLocalArray(type, id, name) {
+    const key = `${type}`;
+    const data = JSON.parse(localStorage.getItem(key)) || [];
+    if (!data.some(item => item.id === id )) {
+        data.push({ id, name });
+        localStorage.setItem(key, JSON.stringify(data));
+    }
+}
+
+function getArrayItem(type, id) {
+    const key = `${type}`;
+    const data = JSON.parse(localStorage.getItem(key)) || [];
+    const found = data.find(item => item.id === id);
+    return found ? found.name : null;
+}
 
 // FILM
 
@@ -76,10 +91,11 @@ async function fetchFilmCharacters(id) {
 }
 
 const renderFilmCharacters = filmCharacters => {
-    const filmCharactersLis = filmCharacters.map(character =>
-        `<li><a href="/character.html?id=${character.id}">${character.name}</a></li>`
-    )
-    charactersUl.innerHTML = filmCharactersLis.join("");
+    const filmCharactersList = filmCharacters.map(character => {
+        storeLocalArray('film_characters', character.id, character.name);
+        return `<li><a href="/character.html?id=${character.id}">${character.name}</a></li>`;
+    })
+    charactersUl.innerHTML = filmCharactersList.join("");
 }
 
 // FILM PLANETS
@@ -104,8 +120,9 @@ async function fetchFilmPlanets(id) {
 }
 
 const renderFilmPlanets = filmPlanets => {
-    const filmPlanetsLis = filmPlanets.map(planet =>
-        `<li><a href="/planet.html?id=${planet.id}">${planet.name}</a></li>`
-    )
-    planetsUl.innerHTML = filmPlanetsLis.join("");
+    const filmPlanetsList = filmPlanets.map(planet => {
+        storeLocalArray("film_planets", planet.id, planet.name);
+        return `<li><a href="/planet.html?id=${planet.id}">${planet.name}</a></li>`;
+    })
+    planetsUl.innerHTML = filmPlanetsList.join("");
 }
