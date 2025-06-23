@@ -66,3 +66,7 @@ const renderPlanet = (planet) => {
 
   charactersUl.innerHTML = charactersLis.join("");
 };
+
+document.getElementById('homeButton').addEventListener('click', () => {
+    document.location.href = 'http://localhost:3000/'
+})

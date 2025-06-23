@@ -109,3 +109,7 @@ const renderFilmPlanets = filmPlanets => {
     )
     planetsUl.innerHTML = filmPlanetsLis.join("");
 }
+
+document.getElementById('homeButton').addEventListener('click', () => {
+    document.location.href = 'http://localhost:3000/'
+})
