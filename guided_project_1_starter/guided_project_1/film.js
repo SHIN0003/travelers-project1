@@ -1,4 +1,4 @@
-let nameH1;
+let titleH1;
 let directorSpan;
 let producerSpan;
 let release_dateSpan;
@@ -6,7 +6,7 @@ const baseUrl = `http://localhost:9001/api`;
 
 // Runs on page load
 addEventListener('DOMContentLoaded', () => {
-  nameH1 = document.querySelector('h1#name');
+  titleH1 = document.querySelector('h1#title');
   directorSpan = document.querySelector('span#director');
   producerSpan = document.querySelector('span#producer');
   release_dateSpan = document.querySelector('span#release_date')
