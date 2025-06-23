@@ -1,14 +1,15 @@
 let nameH1;
-let birthYearSpan;
-let heightSpan;
-let massSpan;
-let filmsDiv;
-let planetDiv;
+let directorSpan;
+let producerSpan;
+let release_dateSpan;
 const baseUrl = `http://localhost:9001/api`;
 
 // Runs on page load
 addEventListener('DOMContentLoaded', () => {
   nameH1 = document.querySelector('h1#name');
+  directorSpan = document.querySelector('span#director');
+  producerSpan = document.querySelector('span#producer');
+  release_dateSpan = document.querySelector('span#release_date')
   const sp = new URLSearchParams(window.location.search)
   const id = sp.get('id')
   getFilm(id)
@@ -18,6 +19,7 @@ async function getFilm(id) {
   let film;
   try {
     film = await fetchFilm(id)
+    console.log(film)
   }
   catch (ex) {
     console.error(`Error reading film ${id} data.`, ex.message);
@@ -33,6 +35,9 @@ async function fetchFilm(id) {
 }
 
 const renderFilm = film => {
-  document.title = `SWAPI - ${film?.name}`;  // Just to make the browser tab say their name
-  nameH1.textContent = film?.name;
+  document.title = `SWAPI - ${film?.title}`;  // Just to make the browser tab say their name
+  nameH1.textContent = film?.title;
+  directorSpan.textContent = film?.director;
+  producerSpan.textContent = film?.producer;
+  release_dateSpan.textContent = film?.release_date;
 }
