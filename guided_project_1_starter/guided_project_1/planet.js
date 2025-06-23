@@ -1,9 +1,9 @@
 let nameH1;
-let birthYearSpan;
-let heightSpan;
-let massSpan;
-let filmsDiv;
-let planetDiv;
+let terrainSpan;
+let climateSpan;
+let diameterSpan;
+let charactersUl;
+let filmsUl;
 const baseUrl = `http://localhost:9001/api`;
 
 // Runs on page load
@@ -66,3 +66,7 @@ const renderPlanet = (planet) => {
 
   charactersUl.innerHTML = charactersLis.join("");
 };
+
+document.getElementById('homeButton').addEventListener('click', () => {
+    document.location.href = 'http://localhost:3000/'
+})
