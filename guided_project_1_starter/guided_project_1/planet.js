@@ -63,5 +63,4 @@ const renderPlanet = planet => {
   filmsUl.innerHTML = filmsLis.join("");
   const charactersLis = planet?.chracters?.map(character => `<li><a href="/character.html?id=${character.id}">${character.name}</li>`)
   charactersUl.innerHTML = charactersLis.join("");
-  
 }
