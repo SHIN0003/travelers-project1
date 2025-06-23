@@ -2,6 +2,7 @@ let titleH1;
 let directorSpan;
 let producerSpan;
 let release_dateSpan;
+let descriptionSpan;
 let charactersUl;
 let planetsUl;
 const baseUrl = `http://localhost:9001/api`;
@@ -11,7 +12,8 @@ addEventListener('DOMContentLoaded', () => {
   titleH1 = document.querySelector('h1#title');
   directorSpan = document.querySelector('span#director');
   producerSpan = document.querySelector('span#producer');
-  release_dateSpan = document.querySelector('span#release_date')
+  release_dateSpan = document.querySelector('span#release_date');
+  descriptionSpan = document.querySelector('span#description');
   charactersUl = document.querySelector('#characters>ul');
   planetsUl = document.querySelector('#planets>ul');
   const sp = new URLSearchParams(window.location.search)
@@ -49,6 +51,7 @@ const renderFilm = film => {
     directorSpan.textContent = film?.director;
     producerSpan.textContent = film?.producer;
     release_dateSpan.textContent = film?.release_date;
+    descriptionSpan.textContent = film?.opening_crawl;
 }
 
 // FILM CHARACTERS
